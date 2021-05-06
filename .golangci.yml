@@ -36,6 +36,8 @@ linters-settings:
       - "someword"
   nestif:
     min-complexity: 4
+  testpackage:
+    skip-regexp: "_inner_test.go"
 
 linters:
   disable:
@@ -55,4 +57,9 @@ issues:
     # Exclude some linters from running on tests files.
     - path: "_test.go"
       linters:
+        - "dupl"
         - "errcheck"
+        - "exhaustivestruct"
+        - "funlen"
+        - "goerr113"
+        - "gochecknoglobals"
