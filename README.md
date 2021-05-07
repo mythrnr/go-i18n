@@ -1,4 +1,4 @@
-# go-message
+# i18n-go
 
 [日本語](./README.jp.md)
 
@@ -6,14 +6,14 @@
 
 ## After creating the repository
 
-- Replace `mythrnr/go-message` with the name of the repository you created.
+- Replace `mythrnr/i18n-go` with the name of the repository you created.
 - Change `LICENSE` to match your own library.
 
 ## Status
 
-[![Check codes](https://github.com/mythrnr/go-message/actions/workflows/check_code.yml/badge.svg)](https://github.com/mythrnr/go-message/actions/workflows/check_code.yml)
+[![Check codes](https://github.com/mythrnr/i18n-go/actions/workflows/check_code.yml/badge.svg)](https://github.com/mythrnr/i18n-go/actions/workflows/check_code.yml)
 
-[![Create Release](https://github.com/mythrnr/go-message/actions/workflows/release.yml/badge.svg)](https://github.com/mythrnr/go-message/actions/workflows/release.yml)
+[![Create Release](https://github.com/mythrnr/i18n-go/actions/workflows/release.yml/badge.svg)](https://github.com/mythrnr/i18n-go/actions/workflows/release.yml)
 
 ## Description
 
@@ -28,7 +28,7 @@ Go 1.13 or above.
 Get it with `go get`.
 
 ```bash
-go get github.com/mythrnr/go-message
+go get github.com/mythrnr/i18n-go
 ```
 
 ## Usage

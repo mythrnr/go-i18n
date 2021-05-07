@@ -1,4 +1,4 @@
-package message_test
+package i18n_test
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mythrnr/go-message"
+	"github.com/mythrnr/i18n-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -66,7 +66,7 @@ func Test_loader_Load_JSON(t *testing.T) {
 
 		value := []byte(`{ "0-1": "apple", }`)
 
-		loader := message.NewJSONLoader()
+		loader := i18n.NewJSONLoader()
 		m, err := loader.Load(value)
 
 		assert.NotNil(t, err)
@@ -88,13 +88,13 @@ func Test_loader_Load_JSON(t *testing.T) {
 			v: []byte(`{ "0-5": { "0-5.1-1": false } }`),
 		}}
 
-		loader := message.NewJSONLoader()
+		loader := i18n.NewJSONLoader()
 
 		for _, tt := range tests {
 			m, err := loader.Load(tt.v)
 
 			require.NotNil(t, err)
-			assert.ErrorIs(t, err, message.ErrMessageValueTypeInvalid)
+			assert.ErrorIs(t, err, i18n.ErrMessageValueTypeInvalid)
 			assert.Nil(t, m)
 		}
 	})
@@ -103,7 +103,7 @@ func Test_loader_Load_JSON(t *testing.T) {
 		t.Parallel()
 
 		value := []byte(_testJSONContent)
-		loader := message.NewJSONLoader()
+		loader := i18n.NewJSONLoader()
 		m, err := loader.Load(value)
 
 		assert.Nil(t, err)
@@ -120,7 +120,7 @@ func Test_loader_Load_YAML(t *testing.T) {
 
 		value := []byte(`invalid yaml`)
 
-		loader := message.NewYAMLLoader()
+		loader := i18n.NewYAMLLoader()
 		m, err := loader.Load(value)
 
 		assert.NotNil(t, err)
@@ -142,13 +142,13 @@ func Test_loader_Load_YAML(t *testing.T) {
 			v: []byte(`"0-5": { "0-5.1-1": false }`),
 		}}
 
-		loader := message.NewYAMLLoader()
+		loader := i18n.NewYAMLLoader()
 
 		for _, tt := range tests {
 			m, err := loader.Load(tt.v)
 
 			require.NotNil(t, err)
-			assert.ErrorIs(t, err, message.ErrYAMLValueTypeInvalid)
+			assert.ErrorIs(t, err, i18n.ErrYAMLValueTypeInvalid)
 			assert.Nil(t, m)
 		}
 	})
@@ -157,7 +157,7 @@ func Test_loader_Load_YAML(t *testing.T) {
 		t.Parallel()
 
 		value := []byte(_tsetYAMLContent)
-		loader := message.NewYAMLLoader()
+		loader := i18n.NewYAMLLoader()
 		m, err := loader.Load(value)
 
 		assert.Nil(t, err)
@@ -172,7 +172,7 @@ func Test_loader_LoadFile(t *testing.T) {
 	t.Run("File not exists", func(t *testing.T) {
 		t.Parallel()
 
-		loader := message.NewJSONLoader()
+		loader := i18n.NewJSONLoader()
 		m, err := loader.LoadFile("not_exists_file.json")
 
 		assert.NotNil(t, err)
@@ -195,7 +195,7 @@ func Test_loader_LoadFile(t *testing.T) {
 			os.ModePerm),
 		)
 
-		loader := message.NewJSONLoader()
+		loader := i18n.NewJSONLoader()
 		m, err := loader.LoadFile(path)
 
 		require.Nil(t, err)

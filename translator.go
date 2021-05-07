@@ -1,4 +1,4 @@
-package message
+package i18n
 
 import "golang.org/x/text/language"
 
@@ -22,16 +22,16 @@ func (t *Translator) Fallback(l *Localizer) {
 	t.fallback = l
 }
 
-func (t *Translator) Get(tag language.Tag) *Localizer {
+func (t *Translator) IsSupported(tag language.Tag) bool {
+	_, ok := t.mapping[tag]
+
+	return ok
+}
+
+func (t *Translator) Localizer(tag language.Tag) *Localizer {
 	if tr, ok := t.mapping[tag]; ok {
 		return tr
 	}
 
 	return t.fallback
-}
-
-func (t *Translator) IsSupported(tag language.Tag) bool {
-	_, ok := t.mapping[tag]
-
-	return ok
 }

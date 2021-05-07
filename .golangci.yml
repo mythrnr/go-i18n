@@ -43,6 +43,7 @@ linters:
   disable:
     - "interfacer"
     - "maligned"
+    - "scopelint"
   presets:
     - "bugs"
     - "complexity"

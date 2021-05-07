@@ -1,4 +1,4 @@
-package message
+package i18n
 
 import (
 	"testing"
@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_M_get(t *testing.T) {
+func Test_Message_get(t *testing.T) {
 	t.Parallel()
 
 	// {nest}-{case}
@@ -40,7 +40,7 @@ func Test_M_get(t *testing.T) {
 	}
 }
 
-func Test_M_lookup(t *testing.T) {
+func Test_Message_lookup(t *testing.T) {
 	t.Parallel()
 
 	// {nest}-{case}

@@ -1,10 +1,12 @@
-package message
+package i18n
 
 import "strings"
 
-type M map[string]interface{}
+type Message map[string]interface{}
 
-func (m *M) get(key string) []string {
+type M = Message
+
+func (m *Message) get(key string) []string {
 	if msg := m.lookup(key); 0 < len(msg) {
 		return msg
 	}
@@ -12,7 +14,7 @@ func (m *M) get(key string) []string {
 	return []string{key}
 }
 
-func (m *M) lookup(key string) []string {
+func (m *Message) lookup(key string) []string {
 	v, ok := (*m)[key]
 	if ok {
 		switch v := v.(type) {
@@ -35,7 +37,7 @@ func (m *M) lookup(key string) []string {
 		return nil
 	}
 
-	child, ok := v.(*M)
+	child, ok := v.(*Message)
 	if !ok {
 		return nil
 	}

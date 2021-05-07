@@ -1,4 +1,4 @@
-package message
+package i18n
 
 import (
 	"math"
@@ -68,7 +68,7 @@ func Test_Localizer_replace(t *testing.T) {
 		l := NewLocalizer(&M{})
 
 		msg := "{stringKey}, {intKey}, {stringKey}, test string, {keyNotSet}"
-		rep := Replacement{
+		rep := R{
 			"stringKey": "string-value",
 			"intKey":    2,
 		}
@@ -88,7 +88,7 @@ func Test_Localizer_replace(t *testing.T) {
 		})
 
 		msg := "{stringKey}, {intKey}, {stringKey}, test string, {keyNotSet}"
-		rep := Replacement{
+		rep := R{
 			"stringKey": "string-value",
 			"intKey":    2,
 		}

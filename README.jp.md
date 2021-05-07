@@ -1,19 +1,24 @@
-# go-message
+# i18n-go
 
 [English](./README.md)
 
 - Go言語のライブラリ用のテンプレートリポジトリ.
 
+## TODO
+
+- ドキュメント
+- 置換処理のプラグイン化
+
 ## After creating the repository
 
-- `mythrnr/go-message` を作成したリポジトリ名に置換する.
+- `mythrnr/i18n-go` を作成したリポジトリ名に置換する.
 - `LICENSE` は自身のライブラリに沿ったものに変更する.
 
 ## Status
 
-[![Check codes](https://github.com/mythrnr/go-message/actions/workflows/check_code.yml/badge.svg)](https://github.com/mythrnr/go-message/actions/workflows/check_code.yml)
+[![Check codes](https://github.com/mythrnr/i18n-go/actions/workflows/check_code.yml/badge.svg)](https://github.com/mythrnr/i18n-go/actions/workflows/check_code.yml)
 
-[![Create Release](https://github.com/mythrnr/go-message/actions/workflows/release.yml/badge.svg)](https://github.com/mythrnr/go-message/actions/workflows/release.yml)
+[![Create Release](https://github.com/mythrnr/i18n-go/actions/workflows/release.yml/badge.svg)](https://github.com/mythrnr/i18n-go/actions/workflows/release.yml)
 
 ## Description
 
@@ -28,7 +33,7 @@ Go 1.13 以上.
 `go get` で取得する.
 
 ```bash
-go get github.com/mythrnr/go-message
+go get github.com/mythrnr/i18n-go
 ```
 
 ## Usage

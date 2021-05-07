@@ -1,4 +1,4 @@
-package message
+package i18n
 
 import (
 	"testing"

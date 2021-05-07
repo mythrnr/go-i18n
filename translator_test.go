@@ -1,9 +1,9 @@
-package message_test
+package i18n_test
 
 import (
 	"testing"
 
-	"github.com/mythrnr/go-message"
+	"github.com/mythrnr/i18n-go"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/text/language"
 )
@@ -11,27 +11,27 @@ import (
 func Test_Translator(t *testing.T) {
 	t.Parallel()
 
-	tr := message.NewTranslator()
+	tr := i18n.NewTranslator()
 
 	tr.Add(
 		language.AmericanEnglish,
-		message.NewLocalizer(&message.M{"key": "test"}),
+		i18n.NewLocalizer(&i18n.M{"key": "test"}),
 	)
 
 	tr.Add(
 		language.Japanese,
-		message.NewLocalizer(&message.M{"key": "テスト"}),
+		i18n.NewLocalizer(&i18n.M{"key": "テスト"}),
 	)
 
 	assert.True(t, tr.IsSupported(language.AmericanEnglish))
 	assert.True(t, tr.IsSupported(language.Japanese))
 	assert.False(t, tr.IsSupported(language.English))
 
-	assert.Equal(t, "test", tr.Get(language.AmericanEnglish).Getf("key"))
-	assert.Equal(t, "テスト", tr.Get(language.Japanese).Getf("key"))
-	assert.Equal(t, "key", tr.Get(language.English).Getf("key"))
+	assert.Equal(t, "test", tr.Localizer(language.AmericanEnglish).T("key"))
+	assert.Equal(t, "テスト", tr.Localizer(language.Japanese).T("key"))
+	assert.Equal(t, "key", tr.Localizer(language.English).T("key"))
 
-	tr.Fallback(message.NewLocalizer(&message.M{"key": "fallback-test"}))
+	tr.Fallback(i18n.NewLocalizer(&i18n.M{"key": "fallback-test"}))
 
-	assert.Equal(t, "fallback-test", tr.Get(language.English).Getf("key"))
+	assert.Equal(t, "fallback-test", tr.Localizer(language.English).T("key"))
 }
