@@ -1,4 +1,4 @@
-# i18n-go
+# go-i18n
 
 [English](./README.md)
 
@@ -11,14 +11,14 @@
 
 ## After creating the repository
 
-- `mythrnr/i18n-go` を作成したリポジトリ名に置換する.
+- `mythrnr/go-i18n` を作成したリポジトリ名に置換する.
 - `LICENSE` は自身のライブラリに沿ったものに変更する.
 
 ## Status
 
-[![Check codes](https://github.com/mythrnr/i18n-go/actions/workflows/check_code.yml/badge.svg)](https://github.com/mythrnr/i18n-go/actions/workflows/check_code.yml)
+[![Check codes](https://github.com/mythrnr/go-i18n/actions/workflows/check_code.yml/badge.svg)](https://github.com/mythrnr/go-i18n/actions/workflows/check_code.yml)
 
-[![Create Release](https://github.com/mythrnr/i18n-go/actions/workflows/release.yml/badge.svg)](https://github.com/mythrnr/i18n-go/actions/workflows/release.yml)
+[![Create Release](https://github.com/mythrnr/go-i18n/actions/workflows/release.yml/badge.svg)](https://github.com/mythrnr/go-i18n/actions/workflows/release.yml)
 
 ## Description
 
@@ -33,7 +33,7 @@ Go 1.13 以上.
 `go get` で取得する.
 
 ```bash
-go get github.com/mythrnr/i18n-go
+go get github.com/mythrnr/go-i18n
 ```
 
 ## Usage

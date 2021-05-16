@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mythrnr/i18n-go"
+	"github.com/mythrnr/go-i18n"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

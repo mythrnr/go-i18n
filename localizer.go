@@ -2,7 +2,6 @@ package i18n
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
 )
 
@@ -10,12 +9,9 @@ type Replace map[string]interface{}
 
 type R = Replace
 
-type Formatter func(v interface{}) string
-
-type Selector func(n uint) uint
-
 type Localizer struct {
 	msg       *Message
+	fallback  Fallback
 	formatter Formatter
 	selector  Selector
 }
@@ -23,9 +19,16 @@ type Localizer struct {
 func NewLocalizer(msg *M) *Localizer {
 	return &Localizer{
 		msg:       msg,
+		fallback:  defaultFallback,
 		formatter: defaultFormatter,
 		selector:  defaultSelector,
 	}
+}
+
+func (l *Localizer) Fallback(fn Fallback) *Localizer {
+	l.fallback = fn
+
+	return l
 }
 
 func (l *Localizer) Formatter(fn Formatter) *Localizer {
@@ -69,7 +72,11 @@ func (l *Localizer) Get(key string) string {
 }
 
 func (l *Localizer) GetNum(key string, n uint) string {
-	return l.pluralize(l.msg.get(key), n)
+	if msg := l.lookup(key); msg != nil {
+		return l.pluralize(msg, n)
+	}
+
+	return l.fallback(key)
 }
 
 func (l *Localizer) Getf(key string, args ...interface{}) string {
@@ -79,8 +86,8 @@ func (l *Localizer) Getf(key string, args ...interface{}) string {
 func (l *Localizer) GetNumf(key string, n uint, args ...interface{}) string {
 	rep := R{}
 
-	for i, a := range args {
-		rep[fmt.Sprintf("%d", i)] = a
+	for i, arg := range args {
+		rep[fmt.Sprintf("%d", i)] = arg
 	}
 
 	return l.NamedGetNumf(key, n, rep)
@@ -91,7 +98,19 @@ func (l *Localizer) NamedGetf(key string, rep R) string {
 }
 
 func (l *Localizer) NamedGetNumf(key string, n uint, rep R) string {
-	return l.replace(l.pluralize(l.msg.get(key), n), rep)
+	if msg := l.lookup(key); msg != nil {
+		return l.replace(l.pluralize(msg, n), rep)
+	}
+
+	return l.fallback(key)
+}
+
+func (l *Localizer) lookup(key string) []string {
+	if msg := l.msg.get(key); 0 < len(msg) {
+		return msg
+	}
+
+	return nil
 }
 
 func (l *Localizer) pluralize(msgs []string, n uint) string {
@@ -113,21 +132,3 @@ func (l *Localizer) replace(msg string, rep R) string {
 
 	return msg
 }
-
-func defaultFormatter(v interface{}) string {
-	switch v := v.(type) {
-	case string:
-		return v
-	case int, int8, int16, int32, int64,
-		uint, uint8, uint16, uint32, uint64:
-		return fmt.Sprintf("%d", v)
-	case float32, float64:
-		return fmt.Sprintf("%f", v)
-	case bool:
-		return strconv.FormatBool(v)
-	}
-
-	return fmt.Sprintf("%v", v)
-}
-
-func defaultSelector(_ uint) uint { return 0 }

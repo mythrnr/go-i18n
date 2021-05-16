@@ -6,40 +6,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_Message_get(t *testing.T) {
-	t.Parallel()
-
-	// {nest}-{case}
-	m := &M{
-		"0-1": []string{},
-		"0-2": []string{"apple"},
-		"0-3": []string{"no apples", "one apple", "{count} apples"},
-		"0-4": nil,
-	}
-
-	tests := []struct {
-		key  string
-		want []string
-	}{{
-		key:  "0-1",
-		want: []string{"0-1"},
-	}, {
-		key:  "0-2",
-		want: []string{"apple"},
-	}, {
-		key:  "0-3",
-		want: []string{"no apples", "one apple", "{count} apples"},
-	}, {
-		key:  "0-4",
-		want: []string{"0-4"},
-	}}
-
-	for _, tt := range tests {
-		t.Log(tt.key, tt.want)
-		assert.Equal(t, tt.want, m.get(tt.key))
-	}
-}
-
 func Test_Message_lookup(t *testing.T) {
 	t.Parallel()
 
@@ -137,6 +103,6 @@ func Test_Message_lookup(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Log(tt.key, tt.want)
-		assert.Equal(t, tt.want, m.lookup(tt.key))
+		assert.Equal(t, tt.want, m.get(tt.key))
 	}
 }

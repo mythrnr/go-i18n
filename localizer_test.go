@@ -3,7 +3,7 @@ package i18n_test
 import (
 	"testing"
 
-	"github.com/mythrnr/i18n-go"
+	"github.com/mythrnr/go-i18n"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -20,7 +20,7 @@ func Test_Localizer_Get_and_GetNum(t *testing.T) {
 		}).Selector(func(n uint) uint { return n })
 
 		tests := []struct{ key, want string }{
-			{key: "0-0", want: "0-0"},
+			{key: "0-0", want: "Undefined key in message: 0-0"},
 			{key: "0-1", want: "apple"},
 			{key: "0-2", want: "no apples"},
 		}
@@ -51,8 +51,8 @@ func Test_Localizer_Get_and_GetNum(t *testing.T) {
 			num  uint
 			want string
 		}{
-			{key: "0-0", num: 0, want: "0-0"},
-			{key: "0-0", num: 1, want: "0-0"},
+			{key: "0-0", num: 0, want: "Undefined key in message: 0-0"},
+			{key: "0-0", num: 1, want: "Undefined key in message: 0-0"},
 			{key: "0-1", num: 0, want: "apple"},
 			{key: "0-1", num: 1, want: "apple"},
 			{key: "0-2", num: 0, want: "no apples"},
@@ -85,7 +85,7 @@ func Test_Localizer_Getf_and_GetNumf(t *testing.T) {
 			args []interface{}
 			want string
 		}{
-			{key: "0-0", args: []interface{}{1}, want: "0-0"},
+			{key: "0-0", args: []interface{}{1}, want: "Undefined key in message: 0-0"},
 			{key: "0-1", args: []interface{}{2}, want: "apple"},
 			{key: "0-2", args: []interface{}{3}, want: "no apples"},
 		}
@@ -117,8 +117,8 @@ func Test_Localizer_Getf_and_GetNumf(t *testing.T) {
 			args []interface{}
 			want string
 		}{
-			{key: "0-0", num: 0, args: []interface{}{1}, want: "0-0"},
-			{key: "0-0", num: 1, args: []interface{}{2}, want: "0-0"},
+			{key: "0-0", num: 0, args: []interface{}{1}, want: "Undefined key in message: 0-0"},
+			{key: "0-0", num: 1, args: []interface{}{2}, want: "Undefined key in message: 0-0"},
 			{key: "0-1", num: 0, args: []interface{}{1}, want: "apple"},
 			{key: "0-1", num: 1, args: []interface{}{2}, want: "apple"},
 			{key: "0-2", num: 0, args: []interface{}{1}, want: "no apples"},
@@ -153,7 +153,7 @@ func Test_Localizer_NamedGetf_and_NamedGetNumf(t *testing.T) {
 		}{{
 			key:  "0-0",
 			rep:  i18n.R{"count": 1},
-			want: "0-0",
+			want: "Undefined key in message: 0-0",
 		}, {
 			key:  "0-1",
 			rep:  i18n.R{"count": 1},
@@ -194,12 +194,12 @@ func Test_Localizer_NamedGetf_and_NamedGetNumf(t *testing.T) {
 			key:  "0-0",
 			num:  0,
 			rep:  i18n.R{"count": 1},
-			want: "0-0",
+			want: "Undefined key in message: 0-0",
 		}, {
 			key:  "0-0",
 			num:  1,
 			rep:  i18n.R{"count": 2},
-			want: "0-0",
+			want: "Undefined key in message: 0-0",
 		}, {
 			key:  "0-1",
 			num:  0,

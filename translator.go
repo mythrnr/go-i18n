@@ -23,9 +23,13 @@ func (t *Translator) Fallback(l *Localizer) {
 }
 
 func (t *Translator) IsSupported(tag language.Tag) bool {
-	_, ok := t.mapping[tag]
+	_, supported := t.mapping[tag]
 
-	return ok
+	return supported
+}
+
+func (t *Translator) L(tag language.Tag) *Localizer {
+	return t.Localizer(tag)
 }
 
 func (t *Translator) Localizer(tag language.Tag) *Localizer {

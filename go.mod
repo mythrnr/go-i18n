@@ -1,4 +1,4 @@
-module github.com/mythrnr/i18n-go
+module github.com/mythrnr/go-i18n
 
 go 1.13
 

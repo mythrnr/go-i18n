@@ -3,7 +3,7 @@ package i18n_test
 import (
 	"testing"
 
-	"github.com/mythrnr/i18n-go"
+	"github.com/mythrnr/go-i18n"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/text/language"
 )
@@ -27,9 +27,12 @@ func Test_Translator(t *testing.T) {
 	assert.True(t, tr.IsSupported(language.Japanese))
 	assert.False(t, tr.IsSupported(language.English))
 
-	assert.Equal(t, "test", tr.Localizer(language.AmericanEnglish).T("key"))
-	assert.Equal(t, "テスト", tr.Localizer(language.Japanese).T("key"))
-	assert.Equal(t, "key", tr.Localizer(language.English).T("key"))
+	assert.Equal(t, "test", tr.L(language.AmericanEnglish).T("key"))
+	assert.Equal(t, "テスト", tr.L(language.Japanese).T("key"))
+	assert.Equal(t,
+		"Undefined key in message: key",
+		tr.L(language.English).T("key"),
+	)
 
 	tr.Fallback(i18n.NewLocalizer(&i18n.M{"key": "fallback-test"}))
 
