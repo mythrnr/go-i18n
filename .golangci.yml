@@ -26,7 +26,7 @@ linters-settings:
     max-decl-lines: 1
     max-decl-chars: 60
   lll:
-    line-length: 100
+    line-length: 80
     tab-width: 4
   makezero:
     always: true
@@ -41,9 +41,12 @@ linters-settings:
 
 linters:
   disable:
+    # ---- deprecated ---- #
+    - "golint"
     - "interfacer"
     - "maligned"
     - "scopelint"
+    # -------------------- #
   presets:
     - "bugs"
     - "complexity"
@@ -59,8 +62,6 @@ issues:
     - path: "_test.go"
       linters:
         - "dupl"
-        - "errcheck"
-        - "exhaustivestruct"
         - "funlen"
-        - "goerr113"
         - "gochecknoglobals"
+        - "lll"
